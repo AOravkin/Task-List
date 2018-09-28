@@ -1,0 +1,40 @@
+// Define UI Variables
+const form = document.querySelector("#task-form");
+const taskInput = document.querySelector("#task");
+const filter = document.querySelector("#filter");
+const taskList = document.querySelector(".collection");
+const clearBtn = document.querySelector(".clear-tasks");
+
+// Load Event Listeners
+loadEventListeners();
+
+function loadEventListeners() {
+  form.addEventListener("submit", addTask);
+}
+
+// Add Task
+function addTask(e) {
+  if (taskInput.value === "") {
+    alert("Add a task");
+  } else {
+    // Create li element
+    const li = document.createElement("li");
+    // Add class
+    li.className = "collection-item";
+    // Create text node and append to li
+    li.appendChild(document.createTextNode(taskInput.value));
+    // Create new link element
+    const link = document.createElement("a");
+    // Add class to link
+    link.className = "delete-item secondary-content";
+    link.innerHTML = '<i class="fa fa-remove"></i>';
+    //Append link to li
+    li.appendChild(link);
+    // Append li to ul
+    taskList.appendChild(li);
+
+    // Clear form input
+    taskInput.value = "";
+  }
+  e.preventDefault();
+}
